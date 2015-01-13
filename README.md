@@ -1,5 +1,5 @@
 # modman-generator
-Simple script which helps generate modman file based upon "git ls-files" command.
+Simple script which helps generate Magento modman file based upon "git ls-files" command.
 
 ## Using
 To generate modman file just go to your Magento project root directory and run:
