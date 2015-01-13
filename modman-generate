@@ -13,7 +13,7 @@ $files = `git ls-files | grep -vE "($ignoreFiles)"`;
 
 //match directories
 preg_match_all(
-    '~^app/code/([A-z_]+/){3}|app/etc/modules/[^\n]*|app/design/([^/\n]+/?){6}|(shell|js|skin)/[^\n]+|lib/[A-z]+/~s',
+    '~^app/code/([A-z_]+/){3}|app/etc/modules/[^\n]*|app/locale/[^\n]+|app/design/([^/\n]+/?){6}|(shell|js|skin)/[^\n]+|lib/[A-z]+/~s',
     $files, $matches
 );
 $list = array_unique($matches[0]);
