@@ -1,2 +1,2 @@
 # modman-generator
-Simple script which helps generate modman file based update \"git ls-files\" command.
+Simple script which helps generate modman file based upon "git ls-files" command.
