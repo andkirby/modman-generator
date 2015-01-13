@@ -1,0 +1,16 @@
+{
+  "name": "andkirby/modman-generator",
+  "description": "Simple script which helps generate modman file based update \"git ls-files\" command.",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Andrew Roslik",
+      "email": "bizkirby@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {},
+  "bin": [
+    "modman-generate"
+  ]
+}

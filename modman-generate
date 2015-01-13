@@ -1,0 +1,39 @@
+#!/usr/bin/env php
+<?php
+$ignoreFiles = array(
+    'modman',
+    'composer',
+    'instructions',
+    '\.gitignore',
+    'README\.md',
+    'LICENSE',
+);
+$ignoreFiles = implode('|', $ignoreFiles);
+$files = `git ls-files | grep -vE "($ignoreFiles)"`;
+
+//match directories
+preg_match_all(
+    '~^app/code/([A-z_]+/){3}|app/etc/modules/[^\n]*|app/design/([^/\n]+/?){6}|(shell|js|skin)/[^\n]+|lib/[A-z]+/~s',
+    $files, $matches
+);
+$list = array_unique($matches[0]);
+
+//find long string
+$maxLength = max(array_map('strlen', $list));
+
+//make output
+foreach ($list as $item) {
+    if (is_file($item)) {
+        $space = str_repeat(' ', $maxLength - strlen($item) + 3);
+        $output[] = "$item $space $item";
+    } else {
+        $item = rtrim($item, '/') . '/';
+        $space = str_repeat(' ', $maxLength - strlen($item) + 2);
+        $output[] = "$item* $space $item";
+    }
+}
+$output = implode("\n", $output);
+
+echo "'modman' file generated.";
+file_put_contents('modman', $output);
+
