@@ -1,5 +1,6 @@
 #!/usr/bin/env php
 <?php
+echo "Simple Modman Generator v0.1.1" . PHP_EOL;
 $ignoreFiles = array(
     'modman',
     'composer',
@@ -13,10 +14,14 @@ $files = `git ls-files | grep -vE "($ignoreFiles)"`;
 
 //match directories
 preg_match_all(
-    '~^app/code/([A-z_]+/){3}|app/etc/modules/[^\n]*|app/locale/[^\n]+|app/design/([^/\n]+/?){6}|(shell|js|skin)/[^\n]+|lib/[A-z]+/~s',
+    '~^app/code/([A-z_]+/){3}|app/etc/modules/[^\n]*|app/design/([^/\n]+/?){6}|(shell|js|skin)/[^\n]+|lib/[A-z]+/~s',
     $files, $matches
 );
 $list = array_unique($matches[0]);
+if (!$list) {
+    echo "No files found under GIT to place into 'modman' file." . PHP_EOL;
+    return;
+}
 
 //find long string
 $maxLength = max(array_map('strlen', $list));
@@ -34,6 +39,6 @@ foreach ($list as $item) {
 }
 $output = implode("\n", $output);
 
-echo "'modman' file generated.";
 file_put_contents('modman', $output);
+echo "'modman' file generated." . PHP_EOL;
 
