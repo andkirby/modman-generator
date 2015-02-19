@@ -3,8 +3,8 @@
 echo "Simple Modman Generator v0.1.1" . PHP_EOL;
 $ignoreFiles = array(
     'modman',
-    'composer',
-    'instructions',
+    'composer\.json',
+    'composer\.lock',
     '\.gitignore',
     'README\.md',
     'LICENSE',
@@ -19,7 +19,7 @@ preg_match_all(
 );
 $list = array_unique($matches[0]);
 if (!$list) {
-    echo "No files found under GIT to place into 'modman' file." . PHP_EOL;
+    echo "error: No files found under GIT to place into 'modman' file." . PHP_EOL;
     return;
 }
 
@@ -30,15 +30,22 @@ $maxLength = max(array_map('strlen', $list));
 foreach ($list as $item) {
     if (is_file($item)) {
         $space = str_repeat(' ', $maxLength - strlen($item) + 3);
-        $output[] = "$item $space $item";
     } else {
         $item = rtrim($item, '/') . '/';
         $space = str_repeat(' ', $maxLength - strlen($item) + 2);
-        $output[] = "$item* $space $item";
     }
+    $output[] = "$item $space $item";
 }
 $output = implode("\n", $output);
 
-file_put_contents('modman', $output);
-echo "'modman' file generated." . PHP_EOL;
+//get GIT root path
+$gitRoot = `git rev-parse --show-toplevel`;
+//make absolute path to modman file
+$file = $gitRoot . DIRECTORY_SEPARATOR . 'modman';
+
+if (false === file_put_contents($file, $output)) {
+    echo "error: 'modman' cannot be generated." . PHP_EOL;
+} else {
+    echo "'modman' file generated." . PHP_EOL;
+}
 
