@@ -10,8 +10,8 @@ To generate modman file just go to your Magento project root directory and run:
 It get all files under GIT by command `git ls-files`.
 It excludes files by masks
 - modman
-- composer
-- instructions*
+- composer.json
+- composer.lock
 - .gitignore
 - README.md
 - LICENSE
