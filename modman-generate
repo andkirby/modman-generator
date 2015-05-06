@@ -1,6 +1,6 @@
 #!/usr/bin/env php
 <?php
-echo "Simple Modman Generator v0.1.4" . PHP_EOL;
+echo "Simple Modman Generator v0.1.5" . PHP_EOL;
 $ignoreFiles = array(
     'modman',
     'composer\.json',
@@ -36,7 +36,7 @@ foreach ($list as $item) {
     }
     $output[] = "$item $space $item";
 }
-$output = implode("\n", $output);
+$output = implode("\n", $output) . "\n";
 
 //get GIT root path
 $gitRoot = trim(`git rev-parse --show-toplevel`);
