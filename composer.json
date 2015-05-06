@@ -12,5 +12,10 @@
   "require": {},
   "bin": [
     "bin/modman-generate"
-  ]
+  ],
+  "autoload": {
+    "psr-4": {
+      "AndKirby\\ModmanGenerator": "src/ModmanGenerator",
+    }
+  }
 }

@@ -1,6 +1,8 @@
 #!/usr/bin/env php
 <?php
 echo "Simple Modman Generator v0.1.5" . PHP_EOL;
+require_once 'autoload-init.php';
+
 $ignoreFiles = array(
     'modman',
     'composer\.json',
