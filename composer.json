@@ -11,6 +11,6 @@
   "minimum-stability": "dev",
   "require": {},
   "bin": [
-    "modman-generate"
+    "bin/modman-generate"
   ]
 }
