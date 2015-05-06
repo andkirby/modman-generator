@@ -15,7 +15,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "AndKirby\\ModmanGenerator": "src/ModmanGenerator",
+      "AndKirby\\ModmanGenerator": "src/ModmanGenerator"
     }
   }
 }
