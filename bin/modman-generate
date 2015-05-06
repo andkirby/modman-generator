@@ -3,26 +3,13 @@
 echo "Simple Modman Generator v0.1.5" . PHP_EOL;
 require_once 'autoload-init.php';
 
-$ignoreFiles = array(
-    'modman',
-    'composer\.json',
-    'composer\.lock',
-    '\.gitignore',
-    'README\.md',
-    'LICENSE',
-);
-$ignoreFiles = implode('|', $ignoreFiles);
-$files = `git ls-files | grep -vE "($ignoreFiles)"`;
 
-//match directories
-preg_match_all(
-    '~^app/code/([A-z_]+/){3}|app/etc/modules/[^\n]*|app/design/([^/\n]+/?){6}|(shell|js|skin)/[^\n]+|lib/[A-z]+/~s',
-    $files, $matches
-);
-$list = array_unique($matches[0]);
-if (!$list) {
-    echo "error: No files found under GIT to place into 'modman' file." . PHP_EOL;
-    return;
+try {
+    $generator = new \AndKirby\ModmanGenerator\Generator();
+    $list      = $generator->generate();
+} catch (Exception $e) {
+    echo $e->getMessage();
+    exit(1);
 }
 
 //find long string
