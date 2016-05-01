@@ -33,6 +33,7 @@ $file = $gitRoot . DIRECTORY_SEPARATOR . 'modman';
 
 if (false === file_put_contents($file, $output)) {
     echo "error: 'modman' cannot be generated." . PHP_EOL;
+    exit(1);
 } else {
     echo "'modman' file generated." . PHP_EOL;
 }
