@@ -83,7 +83,7 @@ class FileSystem
         $files = $this->getVcsFiles();
         //match directories
         preg_match_all(
-            '~app/code/([A-z_]+/){3}|app/locale/[^\n]*|app/etc/modules/[^\n]*|app/design/([^/\n]+/?){6}|(shell|js|skin)/[^\n]+|lib/[A-z]+/~s',
+            '~app/code/[^\n]*|app/locale/[^\n]*|app/etc/modules/[^\n]*|app/design/([^/\n]+/?){6}|(shell|js|skin)/[^\n]+|lib/[A-z]+/~s',
             $files, $matches
         );
         return array_unique($matches[0]);
