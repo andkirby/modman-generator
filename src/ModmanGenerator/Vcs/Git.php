@@ -19,7 +19,7 @@ class Git implements AdapterInterface
     {
         $gitRoot = $this->getRoot() . '/.git';
         $ignoreFiles = implode('|', $ignoreFiles);
-        $files = `git --git-dir=$gitRoot ls-files | grep -vE "($ignoreFiles)"`;
+        $files = `git --git-dir="$gitRoot" ls-files | grep -vE "($ignoreFiles)"`;
         return $asPlainText ? $files : explode(PHP_EOL, $files);
     }
 
